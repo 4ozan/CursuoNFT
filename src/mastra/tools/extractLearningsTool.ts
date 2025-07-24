@@ -3,9 +3,9 @@ import { z } from 'zod';
 
 export const extractLearningsTool = createTool({
   id: 'extract-learnings',
-  description: 'Extract key learnings and follow-up questions from a search result',
+  description: 'Extract brand insights, positioning strategies, and creative directions from research content using Nova (Brand Crafter) expertise',
   inputSchema: z.object({
-    query: z.string().describe('The original research query'),
+    query: z.string().describe('The research query or project concept'),
     result: z
       .object({
         title: z.string(),
@@ -18,9 +18,9 @@ export const extractLearningsTool = createTool({
     try {
       const { query, result } = context;
 
-      const learningExtractionAgent = mastra!.getAgent('learningExtractionAgent');
+      const novaAgent = mastra!.getAgent('novaAgent');
 
-      const response = await learningExtractionAgent.generate(
+      const response = await novaAgent.generate(
         [
           {
             role: 'user',

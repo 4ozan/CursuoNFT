@@ -8,9 +8,9 @@ const exa = new Exa(process.env.EXA_API_KEY);
 
 export const webSearchTool = createTool({
   id: 'web-search',
-  description: 'Search the web for information on a specific query and return summarized content',
+  description: 'Search the web for market research, competitive analysis, and industry insights for project validation',
   inputSchema: z.object({
-    query: z.string().describe('The search query to run'),
+    query: z.string().describe('Search query for market research, competitor analysis, or industry insights'),
   }),
   execute: async ({ context, mastra }) => {
     console.log('Executing web search tool');
@@ -36,7 +36,7 @@ export const webSearchTool = createTool({
       console.log(`Found ${results.length} search results, summarizing content...`);
 
       // Get the summarization agent
-      const summaryAgent = mastra!.getAgent('webSummarizationAgent');
+      const veraAgent = mastra!.getAgent('veraAgent');
 
       // Process each result with summarization
       const processedResults = [];
@@ -53,7 +53,7 @@ export const webSearchTool = createTool({
           }
 
           // Summarize the content
-          const summaryResponse = await summaryAgent.generate([
+          const summaryResponse = await veraAgent.generate([
             {
               role: 'user',
               content: `Please summarize the following web content for research query: "${query}"

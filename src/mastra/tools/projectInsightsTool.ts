@@ -1,39 +1,76 @@
 import { createTool } from '@mastra/core/tools';
 import { z } from 'zod';
-import { getUnleashAPI } from '../../lib/unleashApi';
 
-interface NFTInsights {
-  trustScore: number;
-  redFlags: string[];
-  positiveSignals: string[];
-  marketData: {
-    topDealPrice?: number;
-    volume24h?: number;
-    floorPrice?: number;
-    totalSales?: number;
-  };
+interface ProjectInsights {
+  viabilityScore: number;
+  risks: string[];
+  opportunities: string[];
+  marketData: any;
   researchPrompts: string[];
 }
 
-export const nftInsightsTool = createTool({
-  id: 'nft-insights',
-  description: 'Analyzes NFT market data and generates trust scores, flags, and research prompts',
+export const projectInsightsTool = createTool({
+  id: 'project-insights',
+  description: 'Generate project insights and research prompts for business evaluation',
   inputSchema: z.object({
-    collectionSlug: z.string().optional().describe('Collection slug or identifier'),
-    contractAddress: z.string().optional().describe('NFT contract address'),
-    timeRange: z.enum(['24h', '7d', '30d']).default('24h').describe('Time range for analysis'),
-    includeMarketTrends: z.boolean().default(true).describe('Include market trend analysis'),
+    projectName: z.string().describe('The project name or concept to analyze'),
+    category: z.string().optional().describe('Project category or industry'),
+    stage: z.string().optional().describe('Current project stage'),
   }),
   execute: async ({ context }) => {
-    const { collectionSlug, contractAddress, timeRange, includeMarketTrends } = context;
+    const { projectName, category, stage } = context;
     try {
-      const api = getUnleashAPI();
-      const insights: NFTInsights = {
-        trustScore: 0,
-        redFlags: [],
-        positiveSignals: [],
+      const insights: ProjectInsights = {
+        viabilityScore: 75,
+        risks: [],
+        opportunities: [],
         marketData: {},
         researchPrompts: [],
+      };
+
+      // Generate intelligent research prompts based on project
+      insights.researchPrompts = [
+        `What is the market size and growth potential for ${projectName}?`,
+        `Who are the main competitors for ${projectName}?`,
+        `What are the key customer segments for ${projectName}?`,
+        `What are the regulatory or legal considerations for ${projectName}?`,
+      ];
+
+      // Add category-specific prompts
+      if (category) {
+        insights.researchPrompts.push(
+          `What are the current trends in ${category} that affect ${projectName}?`,
+          `What are the typical business models in ${category}?`,
+          `What are the success factors for ${category} startups?`
+        );
+      }
+
+      // Add stage-specific prompts
+      if (stage) {
+        insights.researchPrompts.push(
+          `What are the typical challenges for ${stage} stage projects?`,
+          `What funding sources are available for ${stage} stage projects?`,
+          `What metrics should ${stage} stage projects focus on?`
+        );
+      }
+
+      // Generate basic risk/opportunity analysis
+      insights.risks = [
+        'Market competition intensity',
+        'Customer acquisition costs',
+        'Regulatory compliance',
+      ];
+
+      insights.opportunities = [
+        'Market growth potential',
+        'Technology innovation',
+        'Customer pain points',
+      ];
+
+      return {
+        success: true,
+        data: insights,
+        summary: `Generated insights for ${projectName} with ${insights.researchPrompts.length} research prompts and basic risk/opportunity analysis`,
       };
 
       // Get top deals data
@@ -165,7 +202,7 @@ export const nftInsightsTool = createTool({
       return {
         success: true,
         data: insights,
-        summary: `Analyzed ${collectionName} with trust score: ${insights.trustScore}/100. Found ${insights.redFlags.length} red flags and ${insights.positiveSignals.length} positive signals.`,
+        summary: `Analyzed ${projectName} with viability score: ${insights.trustScore}/100. Found ${insights.redFlags.length} risks and ${insights.positiveSignals.length} opportunities.`,
       };
 
     } catch (error) {

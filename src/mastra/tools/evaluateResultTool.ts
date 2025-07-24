@@ -3,9 +3,9 @@ import { z } from 'zod';
 
 export const evaluateResultTool = createTool({
   id: 'evaluate-result',
-  description: 'Evaluate if a search result is relevant to the research query',
+  description: 'Evaluate project ideas, market viability, and strategic recommendations using Echo (Audience Analyst) expertise',
   inputSchema: z.object({
-    query: z.string().describe('The original research query'),
+    query: z.string().describe('The project or research query to evaluate'),
     result: z
       .object({
         title: z.string(),
@@ -28,9 +28,9 @@ export const evaluateResultTool = createTool({
         };
       }
 
-      const evaluationAgent = mastra!.getAgent('evaluationAgent');
+      const echoAgent = mastra!.getAgent('echoAgent');
 
-      const response = await evaluationAgent.generate(
+      const response = await echoAgent.generate(
         [
           {
             role: 'user',

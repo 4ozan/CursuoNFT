@@ -1,32 +1,33 @@
 import { Mastra } from '@mastra/core';
 import { LibSQLStore } from '@mastra/libsql';
 import { researchWorkflow } from './workflows/researchWorkflow';
-import { learningExtractionAgent } from './agents/learningExtractionAgent';
-import { evaluationAgent } from './agents/evaluationAgent';
-import { reportAgent } from './agents/reportAgent';
-import { researchAgent } from './agents/researchAgent';
-import { webSummarizationAgent } from './agents/webSummarizationAgent';
-import { nftResearchAgent } from './agents/nftResearchAgent';
-import { generateReportWorkflow } from './workflows/generateReportWorkflow';
-import { nftResearchWorkflow } from './workflows/nftResearchWorkflow';
-import { mainNftWorkflow } from './workflows/mainNftWorkflow';
+import 'dotenv/config';
+import { sparkAgent } from './agents/sparkAgent';
+import { novaAgent } from './agents/novaAgent';
+import { echoAgent } from './agents/echoAgent';
+import { veraAgent } from './agents/veraAgent';
+import { lunaAgent } from './agents/lunaAgent';
+import { sageAgent } from './agents/sageAgent';
+import { generateProjectReportWorkflow } from './workflows/generateProjectReportWorkflow';
+import { projectResearchWorkflow } from './workflows/projectResearchWorkflow';
+import { mainProjectWorkflow } from './workflows/mainProjectWorkflow';
 
 export const mastra = new Mastra({
   storage: new LibSQLStore({
     url: 'file:../mastra.db',
   }),
   agents: {
-    researchAgent,
-    reportAgent,
-    evaluationAgent,
-    learningExtractionAgent,
-    webSummarizationAgent,
-    nftResearchAgent,
+    sageAgent,
+    sparkAgent,
+    novaAgent,
+    lunaAgent,
+    echoAgent,
+    veraAgent,
   },
-  workflows: { 
-    generateReportWorkflow, 
+  workflows: {
     researchWorkflow,
-    nftResearchWorkflow,
-    mainNftWorkflow,
+    generateProjectReportWorkflow,
+    projectResearchWorkflow,
+    mainProjectWorkflow,
   },
 });

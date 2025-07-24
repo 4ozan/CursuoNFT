@@ -1,7 +1,6 @@
 import { createWorkflow, createStep } from '@mastra/core/workflows';
 import { z } from 'zod';
 
-// Step 1: Get user query
 const getUserQueryStep = createStep({
   id: 'get-user-query',
   inputSchema: z.object({}),
@@ -36,7 +35,6 @@ const getUserQueryStep = createStep({
   },
 });
 
-// Step 2: Research
 const researchStep = createStep({
   id: 'research',
   inputSchema: z.object({
@@ -50,7 +48,7 @@ const researchStep = createStep({
     const { query } = inputData;
 
     try {
-      const agent = mastra.getAgent('researchAgent');
+      const agent = mastra.getAgent('novaAgent');
       const researchPrompt = `Research the following topic thoroughly using the two-phase process: "${query}".
 
       Phase 1: Search for 2-3 initial queries about this topic
@@ -89,7 +87,6 @@ const researchStep = createStep({
         },
       );
 
-      // Create a summary
       const summary = `Research completed on "${query}:" \n\n ${JSON.stringify(result.object, null, 2)}\n\n`;
 
       return {
@@ -106,7 +103,6 @@ const researchStep = createStep({
   },
 });
 
-// Step 3: Get user approval
 const approvalStep = createStep({
   id: 'approval',
   inputSchema: z.object({
@@ -151,4 +147,8 @@ export const researchWorkflow = createWorkflow({
   steps: [getUserQueryStep, researchStep, approvalStep],
 });
 
-researchWorkflow.then(getUserQueryStep).then(researchStep).then(approvalStep).commit();
+researchWorkflow
+  .then(getUserQueryStep)
+  .then(researchStep)
+  .then(approvalStep)
+  .commit();
