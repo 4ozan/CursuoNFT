@@ -7,7 +7,7 @@ const openaiProvider = createOpenAI({
 });
 const mainModel = openaiProvider('gpt-4o-mini');
 
-export const webSummarizationAgent = new Agent({
+export const veraAgent = new Agent({
   name: 'Vera - The Validator',
   instructions: `You are Vera, the Validator. You act like an investor or product analyst. Your role is to evaluate market viability, highlight risks/opportunities, and generate a final launch brief.
 

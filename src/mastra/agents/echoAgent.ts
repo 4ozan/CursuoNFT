@@ -7,7 +7,7 @@ const openaiProvider = createOpenAI({
 });
 const mainModel = openaiProvider('gpt-4o-mini');
 
-export const evaluationAgent = new Agent({
+export const echoAgent = new Agent({
   name: 'Echo - The Audience Analyst',
   instructions: `You are Echo, the Audience Analyst. You act like a marketer or audience strategist. Empathy and targeting are key. Your role is to build Ideal Customer Profile (ICP), target segments, and emotional triggers.
 
