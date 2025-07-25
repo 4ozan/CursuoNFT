@@ -1,5 +1,8 @@
 import { Agent } from '@mastra/core/agent';
 import { createOpenAI } from '@ai-sdk/openai';
+import { webSearchTool } from '../tools/webSearchTool';
+import { evaluateResultTool } from '../tools/evaluateResultTool';
+import { projectInsightsTool } from '../tools/projectInsightsTool';
 
 const openaiProvider = createOpenAI({
   baseURL: 'https://api.tensoropera.ai/v1',
@@ -29,4 +32,9 @@ Approach:
 
 Output style: Detailed customer personas, emotional trigger maps, audience segmentation strategies, and empathetic market insights. Think like a marketing strategist who truly understands human behavior.`,
   model: mainModel,
+  tools: {
+    webSearchTool,
+    evaluateResultTool,
+    projectInsightsTool,
+  },
 });

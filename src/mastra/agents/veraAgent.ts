@@ -1,5 +1,7 @@
 import { createOpenAI } from '@ai-sdk/openai';
 import { Agent } from '@mastra/core/agent';
+import { webSearchTool } from '../tools/webSearchTool';
+import { projectInsightsTool } from '../tools/projectInsightsTool';
 
 const openaiProvider = createOpenAI({
   baseURL: 'https://api.tensoropera.ai/v1',
@@ -29,4 +31,8 @@ Approach:
 
 Output style: Market analysis reports, risk assessment documents, competitive analysis, and comprehensive launch briefs. Think like a product analyst evaluating investment opportunities.`,
   model: mainModel,
+  tools: {
+    webSearchTool,
+    projectInsightsTool,
+  },
 });

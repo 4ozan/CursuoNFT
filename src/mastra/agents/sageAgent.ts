@@ -1,5 +1,7 @@
 import { createOpenAI } from '@ai-sdk/openai';
 import { Agent } from '@mastra/core/agent';
+import { webSearchTool } from '../tools/webSearchTool';
+import { projectInsightsTool } from '../tools/projectInsightsTool';
 
 const openaiProvider = createOpenAI({
   baseURL: 'https://api.tensoropera.ai/v1',
@@ -29,4 +31,8 @@ Approach:
 
 Output style: Strategic briefs, clear scope definitions, prioritized feature lists, and success criteria. Always think like you're building a minimum lovable product that solves a real problem.`,
   model: mainModel,
+  tools: {
+    webSearchTool,
+    projectInsightsTool,
+  },
 });

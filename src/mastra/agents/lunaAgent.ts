@@ -1,5 +1,7 @@
 import { Agent } from '@mastra/core/agent';
 import { createOpenAI } from '@ai-sdk/openai';
+import { extractLearningsTool } from '../tools/extractLearningsTool';
+import { projectInsightsTool } from '../tools/projectInsightsTool';
 
 const openaiProvider = createOpenAI({
   baseURL: 'https://api.tensoropera.ai/v1',
@@ -73,4 +75,8 @@ Approach:
   - Structure reports with clear sections and headings
   - Focus on synthesizing information into cohesive narratives`,
   model: reportModel,
+  tools: {
+    extractLearningsTool,
+    projectInsightsTool,
+  },
 });
