@@ -1,66 +1,141 @@
-# Deep Research Assistant with Mastra
+# Project Research & Validation System with Mastra
 
-This project implements an advanced AI deep research assistant using Mastra's workflows and agent capabilities. It creates an interactive, human-in-the-loop research system that allows users to explore topics, evaluate results, and generate comprehensive reports.
+This project implements a comprehensive AI-powered project research and validation system using Mastra's multi-agent architecture. It provides end-to-end project analysis from initial idea validation to technical implementation planning, featuring a specialized 6-agent team that collaborates to deliver strategic insights.
 
-## Implementation Approach
+## 6-Agent Research Team
 
-The research assistant is built on Mastra's workflows architecture for better orchestration and human interaction:
+The system employs six specialized AI agents, each with distinct roles and expertise:
 
-1. **Workflow-Based Architecture**:
-   - `mainWorkflow`: Coordinates the entire research process
-   - `researchWorkflow`: Handles the core research functionality with suspend/resume for user interaction
-   - Human-in-the-loop experience with approval gates and iterative research
+### 🧠 **Sage - The Strategist**
+- **Role**: Founder/Product Manager mindset
+- **Focus**: Project scope definition, MVP features, goal alignment
+- **Tools**: Web search, project insights analysis
+- **Output**: Strategic briefs, scope definitions, feature prioritization
 
-2. **Research Agent with Custom Tools**:
-   - `webSearchTool`: Searches the web using the Exa API for relevant information
-   - `evaluateResultTool`: Assesses result relevance to the research topic
-   - `extractLearningsTool`: Identifies key learnings and generates follow-up questions
+### ⚡ **Spark - The Toolsmith** 
+- **Role**: CTO/Technical Architect
+- **Focus**: Tech stack recommendations, no-code/low-code solutions
+- **Tools**: Web search, project insights analysis
+- **Output**: Technical architecture, tool recommendations, implementation timelines
 
-3. **Report Generation**:
-   - `reportAgent`: Transforms research findings into comprehensive markdown reports
-   - Returns report content directly after user approval of research quality
+### 🎨 **Nova - The Brand Crafter**
+- **Role**: Brand Consultant/Visual Creative
+- **Focus**: Brand identity, visual design, storytelling
+- **Tools**: Web search, project insights analysis
+- **Output**: Brand guidelines, visual concepts, design systems
 
-## Key Benefits of Mastra vNext Implementation
+### 👥 **Echo - The Audience Analyst**
+- **Role**: Marketing Strategist/Audience Expert
+- **Focus**: ICP development, target segments, emotional triggers
+- **Tools**: Web search, result evaluation, project insights analysis
+- **Output**: Customer personas, audience strategies, market insights
 
-1. **True Human-in-the-Loop Research**: Users can guide the research process, approve findings, and iterate when needed
+### ✅ **Vera - The Validator**
+- **Role**: Investor/Product Analyst
+- **Focus**: Market viability, risk assessment, launch readiness
+- **Tools**: Web search, project insights analysis
+- **Output**: Market analysis, risk assessments, launch briefs
 
-2. **Suspend/Resume Capabilities**: The workflow can pause at strategic points to collect user input and feedback
+### ✍️ **Luna - The Wordsmith**
+- **Role**: Copywriter/Report Generator
+- **Focus**: Persuasive copy, comprehensive reporting, synthesis
+- **Tools**: Learning extraction, project insights analysis
+- **Output**: Landing page copy, detailed reports, strategic narratives
 
-3. **Structured Workflow**: Clear separation between research, approval, and report generation phases
+## Workflow Architecture
 
-4. **Resilient Operation**: Robust error handling and fallback mechanisms when web searches fail
+The system uses Mastra's workflow capabilities for orchestrated multi-agent collaboration:
 
-5. **Modular Design**: Each component (workflows, agents, tools) can be maintained and upgraded independently
+- **`mainProjectWorkflow`**: Coordinates the entire project analysis process
+- **`projectResearchWorkflow`**: Handles comprehensive project research
+- **`generateProjectReportWorkflow`**: Synthesizes findings into actionable reports
+- **`researchWorkflow`**: Manages general research tasks with human-in-the-loop
+
+## Custom Tools & Capabilities
+
+- **`webSearchTool`**: Powered by Exa API for market research and competitive analysis
+- **`projectInsightsTool`**: Advanced project analysis and strategic insights
+- **`evaluateResultTool`**: AI-powered relevance assessment for research results
+- **`extractLearningsTool`**: Key insight extraction and follow-up question generation
+- **`projectTopicAdapterTool`**: Intelligent topic adaptation and refinement
+
+## Key Benefits of Multi-Agent Architecture
+
+1. **Specialized Expertise**: Each agent brings domain-specific knowledge and perspective to project analysis
+
+2. **Comprehensive Coverage**: From strategy to technical implementation, branding to market validation
+
+3. **Collaborative Intelligence**: Agents work together through workflows to provide holistic insights
+
+4. **Human-in-the-Loop**: Interactive workflows allow for user guidance and iterative refinement
+
+5. **Scalable & Modular**: Each agent and tool can be independently upgraded and customized
+
+6. **Real-time Research**: Live web search capabilities ensure up-to-date market intelligence
 
 ## How to Use
 
 ```bash
 # Install dependencies
-npm install
+bun install
+# or
+pnpm install
 
-# Run the research assistant
-npm run dev
+# Start the development server
+bun run dev
+# or
+pnpm run dev
 ```
 
-Follow the interactive prompts:
+### Typical Workflow:
 
-1. Enter your research topic
-2. Review the research findings
-3. Approve or reject the research results
-4. If approved, a comprehensive report will be returned as output
+1. **Project Input**: Provide your project idea or concept
+2. **Agent Collaboration**: The 6-agent team researches and analyzes different aspects
+3. **Strategic Analysis**: Sage defines scope and MVP features
+4. **Technical Planning**: Spark recommends tools and architecture
+5. **Brand Development**: Nova creates visual identity concepts
+6. **Audience Research**: Echo develops customer personas and market insights
+7. **Validation**: Vera assesses viability and risks
+8. **Report Generation**: Luna synthesizes everything into actionable reports
 
 ## Required Environment Variables
 
 Create a `.env` file with:
 
 ```
-OPENAI_API_KEY=""
+OPENAI_API_KEY="your-openai-api-key"
 EXA_API_KEY="your-exa-api-key"
 ```
 
-## Required Dependencies
+## Tech Stack
 
-- `@mastra/core`: Core Mastra functionality with vNext workflows
-- `@ai-sdk/openai`: OpenAI models integration
-- `exa-js`: Exa API client for web search
-- `zod`: Schema definition and validation for workflows
+### Core Framework
+- **Mastra**: Multi-agent orchestration and workflow management
+- **TypeScript**: Type-safe development
+- **Bun/pnpm**: Fast package management and runtime
+
+### AI & Models
+- **@ai-sdk/openai**: OpenAI GPT models integration
+- **@ai-sdk/mistral**: Mistral AI models support
+- **TensorOpera API**: Alternative OpenAI-compatible endpoint
+
+### Tools & Integrations
+- **Exa API**: Advanced web search and content retrieval
+- **LibSQL**: Lightweight database for agent state management
+- **Zod**: Runtime type validation and schema definition
+
+### Agent Capabilities
+- **Web Search**: Real-time market research and competitive analysis
+- **Project Analysis**: Strategic insights and technical recommendations
+- **Result Evaluation**: AI-powered relevance assessment
+- **Learning Extraction**: Key insight synthesis and report generation
+
+## Project Structure
+
+```
+src/mastra/
+├── agents/          # 6 specialized AI agents
+├── tools/           # Custom tools for research and analysis
+├── workflows/       # Multi-agent orchestration workflows
+└── index.ts         # Main Mastra configuration
+```
