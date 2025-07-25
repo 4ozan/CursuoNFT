@@ -1,4 +1,4 @@
-<img width="1178" height="204" alt="image" src="https://github.com/user-attachments/assets/6b44d7b7-9c34-435d-9df6-a16a663e92a2" />
+<img width="1178" height="204" alt="image" src="https://github.com/user-attachments/assets/6b44d7b7-9c34-435d-9df6-a16a663e92a2" /> <span><svg fill="none" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m0 24c15.2548 0 24-8.7452 24-24 0 15.2548 8.7452 24 24 24-15.2548 0-24 8.7452-24 24 0-15.2548-8.7452-24-24-24z" fill="#0A0D12" fill-rule="evenodd"/></svg></span>
 
 <svg fill="none" height="48" viewBox="0 0 40 48" width="40" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m20 4c11.0457 0 20 8.9543 20 20s-8.9543 20-20 20-20-8.9543-20-20 8.9543-20 20-20zm15 20c0 8.2843-6.7157 15-15 15v-30c8.2843 0 15 6.7157 15 15z" fill="#4a1fb8" fill-rule="evenodd"/></svg>
 
