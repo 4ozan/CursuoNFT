@@ -1,6 +1,8 @@
-![ChainOpera AI](https://github.com/user-attachments/assets/your-chainopera-logo-url)
+<img width="1178" height="204" alt="image" src="https://github.com/user-attachments/assets/6b44d7b7-9c34-435d-9df6-a16a663e92a2" />
 
-# Project Research & Validation System with Mastra
+<svg fill="none" height="48" viewBox="0 0 40 48" width="40" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m20 4c11.0457 0 20 8.9543 20 20s-8.9543 20-20 20-20-8.9543-20-20 8.9543-20 20-20zm15 20c0 8.2843-6.7157 15-15 15v-30c8.2843 0 15 6.7157 15 15z" fill="#4a1fb8" fill-rule="evenodd"/></svg>
+
+# Project Research & Validation System with ChainOpera
 
 🏆 **Hackathon Project - Powered by ChainOpera AI**
 
